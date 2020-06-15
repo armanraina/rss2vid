@@ -1,5 +1,5 @@
 import feedparser
-from feedsearch_crawler import search
+from feedsearch_crawler import search, search_async
 from dateutil import parser
 from datetime import timezone, datetime
 

@@ -14,7 +14,7 @@ class EpisodeProcessor:
         if self.request:
             filename = create_filename(episode.title)
 
-            image_path = self.request.base_dir + self.request.image
+            image_path = self.request.image
             audio_path = self.request.base_dir + filename + self.request.input_audio_ext
             video_path = self.request.base_dir + filename + self.request.output_video_ext
             description = episode.summary + ' ' + episode.published

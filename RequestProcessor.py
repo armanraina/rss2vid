@@ -1,7 +1,6 @@
 from FeedProvider import FeedProvider
 from Request import Request
 from EpisodeProcessor import EpisodeProcessor
-from dateutil import parser
 
 
 class RequestProcessor:
