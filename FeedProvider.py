@@ -1,16 +1,17 @@
 import feedparser
-from feedsearch_crawler import search, search_async
 from dateutil import parser
 from datetime import timezone, datetime
+from FeedSearcher import FeedSearcher
 
 
 class FeedProvider:
-    def __init__(self, rss_url: str):
+    def __init__(self, feed_searcher: FeedSearcher, rss_url: str):
+        self.feed_searcher = feed_searcher
         self.rss_url = rss_url
 
     def __get_feed(self):
-        feeds = search(self.rss_url)
-        podcast_url = feeds[0].url.human_repr()
+        feeds = self.feed_searcher.search(self.rss_url)
+        podcast_url = feeds[0]['url']
         feed = feedparser.parse(podcast_url)
         return feed
 

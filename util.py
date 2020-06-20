@@ -1,9 +1,4 @@
 import ffmpeg
-from datetime import timezone, datetime
-import requests
-from tqdm import tqdm
-from Request import Request
-from dateutil import parser
 
 
 def create_filename(title):

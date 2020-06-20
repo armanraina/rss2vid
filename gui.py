@@ -7,9 +7,8 @@ from RequestProcessor import RequestProcessor
 from FeedProvider import FeedProvider
 from EpisodeProcessor import EpisodeProcessor
 from dateutil import parser
-import pytz
 from tzlocal import get_localzone
-
+from FeedSearcher import FeedSearcher
 
 config = get_config()
 rss_url = config['DEFAULT']['RSS_URL']
@@ -69,7 +68,8 @@ while True:
 
     downloader = Downloader(request.chunk_size)
     converter = Converter()
-    feed_provider = FeedProvider(request.rss_url)
+    feed_searcher = FeedSearcher()
+    feed_provider = FeedProvider(feed_searcher,request.rss_url)
     episode_processor = EpisodeProcessor(converter, downloader)
     request_processor = RequestProcessor(feed_provider, episode_processor)
     request_processor.process(request)
