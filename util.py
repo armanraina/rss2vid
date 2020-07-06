@@ -1,8 +1,17 @@
 import ffmpeg
+from pathvalidate import sanitize_filename
+import os.path
+import validators
+from dateutil import parser
+from tzlocal import get_localzone
 
 
 def create_filename(title):
-    return "".join([c for c in title if c.isalpha() or c.isdigit() or c == ' ']).rstrip()
+    return sanitize_filename(title)
+
+
+def create_path(directory, filename, extension):
+    return os.path.join(directory, filename + extension)
 
 
 def create_video_stream(image_stream, audio_stream, out_stream):
@@ -15,5 +24,32 @@ def create_video_stream(image_stream, audio_stream, out_stream):
     out.run()
 
 
+def validate_url(url: str):
+    return validators.url(url) or validators.url(f'https://{url}')
 
 
+def validate_image(image: str):
+    return os.path.isfile(image) and os.path.splitext(image)[-1].lower() in ['.png', '.jpg', '.jpeg']
+
+
+def validate_directory(directory: str):
+    return os.path.isdir(directory)
+
+
+def validate_date(date: str):
+    try:
+        parser.parse(date)
+    except (ValueError, OverflowError):
+        return False
+    return True
+
+
+def create_local_datetime(string: str):
+    if validate_date(string):
+        parsed_start_date = parser.parse(string)
+        if not parsed_start_date.tzinfo:
+            local_tz = get_localzone()
+            parsed_start_date = local_tz.localize(parsed_start_date)
+        return parsed_start_date
+    else:
+        return None

@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-from config_manager import get_config
+from ArgumentCacheManager import ArgumentCacheManager
 from Request import Request
 from Downloader import Downloader
 from Converter import Converter
@@ -9,8 +9,11 @@ from EpisodeProcessor import EpisodeProcessor
 from dateutil import parser
 from tzlocal import get_localzone
 from FeedSearcher import FeedSearcher
+import os
+directory = os.getcwd()
+argument_cache_manager = ArgumentCacheManager(directory=directory)
+config = argument_cache_manager.get_config()
 
-config = get_config()
 rss_url = config['DEFAULT']['RSS_URL']
 start_date = parser.parse(config['DEFAULT']['START_DATE'])
 base_dir = config['DEFAULT']['BASE_DIR']
@@ -69,7 +72,7 @@ while True:
     downloader = Downloader(request.chunk_size)
     converter = Converter()
     feed_searcher = FeedSearcher()
-    feed_provider = FeedProvider(feed_searcher,request.rss_url)
+    feed_provider = FeedProvider(feed_searcher, request.rss_url)
     episode_processor = EpisodeProcessor(converter, downloader)
     request_processor = RequestProcessor(feed_provider, episode_processor)
     request_processor.process(request)

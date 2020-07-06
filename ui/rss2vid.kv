@@ -1,0 +1,132 @@
+#:kivy 1.0
+#: import constants constants
+#: import util util
+<RadioItem@AnchorLayout>:
+    text: ''
+    active: False
+    group: ''
+    anchor_x: 'left'
+    MDLabel:
+        text: root.text
+        font_style: 'Caption'
+    MDCheckbox:
+        active: root.active
+        group:  root.group
+
+<ProcessButton@MDRaisedButton>:
+    text: 'Process!'
+
+<Controller>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+
+        MDTextField:
+            id: url_tf
+            hint_text: 'Podcast URL'
+            required: True
+            helper_text_mode: "on_error"
+            helper_text: "Enter a valid URL"
+            text: root.url
+            on_text_validate: self.error = not util.validate_url(self.text)
+            on_focus: self.error = not util.validate_url(self.text)
+            on_text: self.error = not util.validate_url(self.text)
+            on_text: root.url = self.text
+            on_error: root.url_error = self.error
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            BoxLayout:
+                MDRectangleFlatButton:
+                    text: 'Select Image File'
+                    on_press: root.choose_image()
+            BoxLayout:
+                MDTextField:
+                    hint_text: 'Image'
+                    required: True
+                    helper_text_mode: "on_error"
+                    helper_text: "Enter the path of a valid image file"
+                    text: root.image
+                    on_text_validate: self.error = not util.validate_image(self.text)
+                    on_focus: self.error = not util.validate_image(self.text)
+                    on_text: self.error = not util.validate_image(self.text)
+                    on_text: root.image = self.text
+                    on_error: root.image_error = self.error
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            BoxLayout:
+                MDRectangleFlatButton:
+                    text: 'Select Folder'
+                    on_press: root.choose_dir()
+            BoxLayout:
+                MDTextField:
+                    hint_text: 'Output Folder'
+                    required: True
+                    helper_text_mode: "on_error"
+                    helper_text: "Enter the path of a valid folder"
+                    text: root.output_dir
+                    on_text_validate: self.error = not util.validate_directory(self.text)
+                    on_focus: self.error = not util.validate_directory(self.text)
+                    on_text: self.error = not util.validate_directory(self.text)
+                    on_text: root.output_dir = self.text
+                    on_error: root.output_error = self.error
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            BoxLayout:
+                MDRectangleFlatButton:
+                    text: 'Pick Start Date'
+                    on_press: root.show_date_picker()
+            BoxLayout:
+                MDTextField:
+                    hint_text: 'Start Date'
+                    required: True
+                    helper_text_mode: "on_error"
+                    helper_text: "Enter a valid date"
+                    text: str(root.start_date)
+                    on_text_validate: self.error = not util.validate_date(self.text)
+                    on_focus: self.error = not util.validate_date(self.text)
+                    on_text: self.error = not util.validate_date(self.text)
+                    on_text: root.set_start_date(util.create_local_datetime(self.text))
+                    on_error: root.date_error = self.error
+
+        BoxLayout:
+            orientation: 'horizontal'
+            MDLabel:
+                text: 'Select Video Format:'
+                font_style: 'Subtitle1'
+            BoxLayout:
+                orientation: 'vertical'
+                RadioItem:
+                    text: constants.MKV_EXT
+                    active: root.video_format == constants.MKV_EXT
+                    group: 'video_format'
+                    on_active: root.video_format = constants.MKV_EXT
+                RadioItem:
+                    text: constants.AVI_EXT
+                    active: root.video_format == constants.AVI_EXT
+                    group: 'video_format'
+                    on_active: root.video_format = constants.AVI_EXT
+                RadioItem:
+                    text: constants.MP4_EXT
+                    active: root.video_format == constants.MP4_EXT
+                    group: 'video_format'
+                    on_active: root.video_format = constants.MP4_EXT
+
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'bottom'
+            ProcessButton:
+                on_press: root.process_button_handler()
+                disabled: root.url_error or root.image_error or root.date_error or root.output_error or root.processing
+
+
+
+
+
+

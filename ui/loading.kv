@@ -1,0 +1,15 @@
+<Content>:
+    orientation: 'vertical'
+    on_progress: self.progress_text = self.create_progress_text()
+    on_total: self.progress_text = self.create_progress_text()
+    on_done: self.progress_text = self.create_progress_text()
+    MDLabel:
+        text: root.progress_text
+        halign: "center"
+        font_style: 'Subtitle1'
+    MDProgressBar:
+        max: root.total
+        value: root.progress
+
+<CloseButton>:
+    text: 'Close'
