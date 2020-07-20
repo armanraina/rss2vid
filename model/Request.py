@@ -1,5 +1,4 @@
 import datetime
-import validators
 
 
 class Request:

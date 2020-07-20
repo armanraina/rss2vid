@@ -7,9 +7,6 @@ class Converter:
         self.frame_rate = frame_rate
 
     def to_video(self, image_file, audio_file, out_dir, description):
-        print(audio_file)
-        print(image_file)
-        print(out_dir)
 
         audio = ffmpeg.input(audio_file)
 
@@ -27,7 +24,7 @@ class Converter:
             image,
             out_dir,
             shortest=None,
-            preset='veryslow',
+            tune='stillimage',
             crf=18,
             **{'c:a': 'copy',
                'c:v': 'libx264',

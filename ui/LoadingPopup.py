@@ -1,15 +1,25 @@
 from kivy.clock import mainthread
 from kivy.lang import Builder
-from kivy.metrics import dp
 from kivy.properties import NumericProperty, StringProperty, BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.popup import Popup
 from kivymd.uix.button import MDRaisedButton
-from kivymd.uix.progressbar import MDProgressBar
-from kivymd.uix.label import MDLabel
-from kivy.uix.image import Image
 from constants import LOADING_STRING, COUNTING_STRING, DONE_STRING
 from kivymd.uix.dialog import MDDialog
+
+loading_kv = '''
+<Content>:
+    orientation: 'vertical'
+    on_progress: self.progress_text = self.create_progress_text()
+    on_total: self.progress_text = self.create_progress_text()
+    on_done: self.progress_text = self.create_progress_text()
+    MDLabel:
+        text: root.progress_text
+        halign: "center"
+        font_style: 'Subtitle1'
+    MDProgressBar:
+        max: root.total
+        value: root.progress
+'''
 
 
 class Content(BoxLayout):
@@ -33,13 +43,11 @@ class CloseButton(MDRaisedButton):
 
 
 class LoadingPopup(MDDialog):
-    Builder.load_file('loading.kv')
+    Builder.load_string(loading_kv)
 
-    def __init__(self, image: str, title: str):
-        self.content_cls = Content(image=image)
-        self.image = image
+    def __init__(self, title: str):
+        self.content_cls = Content()
         self.type = 'custom'
-        self.buttons = [CloseButton(on_press=self.dismiss)]
         self.auto_dismiss = False
         super().__init__(title=title)
 
@@ -50,6 +58,7 @@ class LoadingPopup(MDDialog):
 
     def close(self):
         self.content_cls.done = True
+        self.dismiss()
 
 
 

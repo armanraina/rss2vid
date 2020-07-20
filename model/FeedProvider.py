@@ -1,7 +1,7 @@
 import feedparser
 from dateutil import parser
 from datetime import timezone, datetime
-from FeedSearcher import FeedSearcher
+from model import FeedSearcher
 
 
 class FeedProvider:

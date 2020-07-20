@@ -1,20 +1,20 @@
-from kivymd.uix.picker import MDDatePicker
 from plyer import filechooser
 from datetime import datetime
-
-from ProgressUpdater import ProgressUpdater
-from Request import Request
-from Downloader import Downloader
-from Converter import Converter
-from RequestProcessor import RequestProcessor
-from FeedProvider import FeedProvider
-from EpisodeProcessor import EpisodeProcessor
-from FeedSearcher import FeedSearcher
+from model.ArgumentCacheManager import ArgumentCacheManager
+from model.ProgressUpdater import ProgressUpdater
+from model.Request import Request
+from model.Downloader import Downloader
+from model.Converter import Converter
+from model.RequestProcessor import RequestProcessor
+from model.FeedProvider import FeedProvider
+from model.EpisodeProcessor import EpisodeProcessor
+from model.FeedSearcher import FeedSearcher
 import constants
 import threading
 from kivy.clock import mainthread
 from kivy.properties import StringProperty, ObjectProperty, OptionProperty, BooleanProperty
-
+from kivymd.vendor.circularTimePicker import CircularTimePicker
+from kivymd.uix.picker import MDDatePicker
 from kivy.uix.boxlayout import BoxLayout
 from ui.LoadingPopup import LoadingPopup
 
@@ -35,6 +35,10 @@ class Controller(BoxLayout):
 
     start_date = ObjectProperty(defaultvalue=datetime.now())
     loading_popup = ObjectProperty()
+
+    def __init__(self, argument_cache_manager: ArgumentCacheManager,  **kwargs):
+        self.argument_cache_manager = argument_cache_manager
+        super().__init__(**kwargs)
 
     def choose_image(self):
         files = filechooser.open_file(
@@ -62,13 +66,13 @@ class Controller(BoxLayout):
                           constants.MP3_EXT,
                           self.video_format,
                           self.image)
-
+        self.argument_cache_manager.update_config(request)
         downloader = Downloader(request.chunk_size)
         converter = Converter()
         feed_searcher = FeedSearcher()
         feed_provider = FeedProvider(feed_searcher, request.rss_url)
         episode_processor = EpisodeProcessor(converter, downloader)
-        self.loading_popup = LoadingPopup(image=request.image, title=request.rss_url)
+        self.loading_popup = LoadingPopup(title=request.rss_url)
         self.loading_popup.open()
         progress_updater = ProgressUpdater(self.loading_popup.update_progress)
         request_processor = RequestProcessor(feed_provider, episode_processor, progress_updater)

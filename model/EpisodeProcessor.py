@@ -1,6 +1,6 @@
-from Request import Request
-from Converter import Converter
-from Downloader import Downloader
+from model import Request
+from model import Converter
+from model import Downloader
 from util import create_filename, create_path
 
 
@@ -23,7 +23,7 @@ class EpisodeProcessor:
             description = f'{self.SUMMARY_TEXT}: {episode.summary}, {self.DATE_TEXT}:  {episode.published}'
 
             self.downloader.download(episode, audio_path)
-           # self.converter.to_video(image_path, audio_path, video_path, description)
+            self.converter.to_video(image_path, audio_path, video_path, description)
 
     def set_request(self, request: Request):
         self.request = request

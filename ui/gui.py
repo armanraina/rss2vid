@@ -1,14 +1,14 @@
 import PySimpleGUI as sg
-from ArgumentCacheManager import ArgumentCacheManager
-from Request import Request
-from Downloader import Downloader
-from Converter import Converter
-from RequestProcessor import RequestProcessor
-from FeedProvider import FeedProvider
-from EpisodeProcessor import EpisodeProcessor
+from model import ArgumentCacheManager
+from model import Request
+from model import Downloader
+from model import Converter
+from model import RequestProcessor
+from model import FeedProvider
+from model import EpisodeProcessor
 from dateutil import parser
 from tzlocal import get_localzone
-from FeedSearcher import FeedSearcher
+from model import FeedSearcher
 import os
 directory = os.getcwd()
 argument_cache_manager = ArgumentCacheManager(directory=directory)

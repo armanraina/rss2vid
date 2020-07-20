@@ -4,6 +4,7 @@ import os.path
 import validators
 from dateutil import parser
 from tzlocal import get_localzone
+import sys
 
 
 def create_filename(title):
@@ -53,3 +54,16 @@ def create_local_datetime(string: str):
         return parsed_start_date
     else:
         return None
+
+
+def resource_path(relative_path):
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+
+def data_path(relative_path):
+    if getattr(sys, 'frozen', False):
+        base_path = os.path.dirname(os.path.abspath(sys.executable))
+    else:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base_path, relative_path)

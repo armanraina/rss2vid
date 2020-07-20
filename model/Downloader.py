@@ -1,6 +1,8 @@
 import requests
 from tqdm import tqdm
 
+from model.DownloadException import DownloadException
+
 
 class Downloader:
     def __init__(self, chunk_size: int, stream: bool = True):
@@ -17,7 +19,7 @@ class Downloader:
                     fd.write(chunk)
                     progress_bar.update(chunk_size)
         else:
-            print('Downloader: Episode Not Supported')
+            raise DownloadException('Downloader: Episode Not Supported')
 
     @staticmethod
     def __get_mp3_link(episode):
