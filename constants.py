@@ -16,3 +16,4 @@ DONE_STRING = 'Done!'
 DEFAULT_URL = 'citr.ca/radio/democracy-watch/'
 
 DEFAULT_DATE_STR = '2020-01-07 12:08:25-08:00'
+

@@ -2,25 +2,23 @@ import feedparser
 from dateutil import parser
 from datetime import timezone, datetime
 from model import FeedSearcher
+from abc import ABC, abstractmethod
 
 
-class FeedProvider:
-    def __init__(self, feed_searcher: FeedSearcher, rss_url: str):
-        self.feed_searcher = feed_searcher
+class FeedProvider(ABC):
+    def __init__(self, rss_url: str):
         self.rss_url = rss_url
         self.__feed = None
 
-    def __get_fresh_feed(self):
-        feeds = self.feed_searcher.search(self.rss_url)
-        podcast_url = feeds[0]['url']
-        self.__feed = feedparser.parse(podcast_url)
-        return self.__feed
+    @abstractmethod
+    def get_fresh_feed(self):
+        pass
 
     def __get_feed(self):
         if self.__feed:
             return self.__feed
         else:
-            return self.__get_fresh_feed()
+            return self.get_fresh_feed()
 
     def yield_feed_entries(self, start_date: datetime = None, end_date: datetime = None):
         feed = self.__get_feed()

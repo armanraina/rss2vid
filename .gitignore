@@ -6,3 +6,6 @@
 app/dist/
 app/build/
 *.exe
+*.log
+*.txt
+config.ini

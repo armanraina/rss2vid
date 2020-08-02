@@ -8,8 +8,7 @@ block_cipher = None
 a = Analysis(['C:\\Users\\arman\\PycharmProjects\\rss_video_app\\main.py'],
              pathex=['C:\\Users\\arman\\app'],
              binaries=[],
-             datas=[('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\config.ini', '.'),
-                    ('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\samples\\mic.jpg', 'samples')],
+             datas=[],
              hiddenimports=['pkg_resources.py2_warn', 'plyer.platforms.win.filechooser'],
              hookspath=[kivymd_hooks_path],
              runtime_hooks=[],
@@ -20,7 +19,7 @@ a = Analysis(['C:\\Users\\arman\\PycharmProjects\\rss_video_app\\main.py'],
              noarchive=False)
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
-exe = EXE(pyz, Tree('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\', excludes=['*.mp3', '*.mkv']),
+exe = EXE(pyz, Tree('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\', excludes=['*.mp3', '*.mkv', '*.spec']),
           a.scripts,
           a.binaries,
           a.zipfiles,
@@ -39,3 +38,4 @@ exe = EXE(pyz, Tree('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\', exclud
 import shutil
 shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\samples\\mic.jpg', '{0}\\mic.jpg'.format(DISTPATH))
 shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\icon.png', '{0}\\icon.png'.format(DISTPATH))
+shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\ffmpeg.exe', '{0}\\ffmpeg.exe'.format(DISTPATH))

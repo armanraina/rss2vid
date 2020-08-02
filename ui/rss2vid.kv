@@ -1,22 +1,26 @@
 #: import constants constants
 #: import util util
-<RadioItem@AnchorLayout>:
+<RadioItem@MDBoxLayout>:
     text: ''
     active: False
     group: ''
-    anchor_x: 'left'
-    MDLabel:
-        text: root.text
-        font_style: 'Caption'
+    padding: [20]
     MDCheckbox:
         active: root.active
         group:  root.group
-
-<ProcessButton@MDRaisedButton>:
+        size_hint: None, None
+        size: dp(36), dp(36)
+    MDLabel:
+        text: root.text
+        font_style: 'Caption'
+<ProcessButton@MDFillRoundFlatIconButton>:
     text: 'Process!'
-
+    icon: 'cog-clockwise'
+<UtilButton@MDFillRoundFlatIconButton>:
+<RadioHeader@MDLabel>:
+    font_style: 'Caption'
 <Controller>:
-    BoxLayout:
+    MDBoxLayout:
         orientation: 'vertical'
         padding: 20
         spacing: 20
@@ -35,13 +39,14 @@
             on_error: root.url_error = self.error
 
 
-        BoxLayout:
+        MDBoxLayout:
             orientation: 'horizontal'
-            BoxLayout:
-                MDRectangleFlatButton:
+            MDBoxLayout:
+                UtilButton:
                     text: 'Select Image File'
                     on_press: root.choose_image()
-            BoxLayout:
+                    icon: 'video-image'
+            MDBoxLayout:
                 MDTextField:
                     hint_text: 'Image'
                     required: True
@@ -55,13 +60,14 @@
                     on_error: root.image_error = self.error
 
 
-        BoxLayout:
+        MDBoxLayout:
             orientation: 'horizontal'
-            BoxLayout:
-                MDRectangleFlatButton:
+            MDBoxLayout:
+                UtilButton:
                     text: 'Select Folder'
                     on_press: root.choose_dir()
-            BoxLayout:
+                    icon: 'folder'
+            MDBoxLayout:
                 MDTextField:
                     hint_text: 'Output Folder'
                     required: True
@@ -75,13 +81,14 @@
                     on_error: root.output_error = self.error
 
 
-        BoxLayout:
+        MDBoxLayout:
             orientation: 'horizontal'
-            BoxLayout:
-                MDRectangleFlatButton:
-                    text: 'Pick Start Date'
+            MDBoxLayout:
+                UtilButton:
+                    text: 'Select Start Date'
                     on_press: root.show_date_picker()
-            BoxLayout:
+                    icon: 'calendar'
+            MDBoxLayout:
                 MDTextField:
                     hint_text: 'Start Date'
                     required: True
@@ -94,13 +101,13 @@
                     on_text: root.set_start_date(util.create_local_datetime(self.text))
                     on_error: root.date_error = self.error
 
-        BoxLayout:
+        MDBoxLayout:
             orientation: 'horizontal'
-            MDLabel:
-                text: 'Select Video Format:'
-                font_style: 'Subtitle1'
-            BoxLayout:
-                orientation: 'vertical'
+            padding: [20, 0]
+            md_bg_color: app.theme_cls.primary_color
+            RadioHeader:
+                text: 'Select Video Format'
+            MDBoxLayout:
                 RadioItem:
                     text: constants.MKV_EXT
                     active: root.video_format == constants.MKV_EXT

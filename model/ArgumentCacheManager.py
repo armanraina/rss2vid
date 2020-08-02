@@ -14,7 +14,7 @@ class ArgumentCacheManager:
 	def initialize_cache(self, date_str):
 		config = configparser.ConfigParser()
 
-		config['DEFAULT']['RSS_URL'] = 'citr.ca/radio/democracy-watch/'
+		config['DEFAULT']['RSS_URL'] = 'https://www.spreaker.com/show/4254204/episodes/feed'
 		config['DEFAULT']['BASE_DIR'] = data_path('')
 		config['DEFAULT']['EXT_INPUT_AUDIO'] = '.mp3'
 		config['DEFAULT']['EXT_OUTPUT_VIDEO'] = '.mkv'

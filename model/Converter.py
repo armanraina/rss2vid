@@ -1,4 +1,5 @@
 import ffmpeg
+from util import data_path, log_filename
 
 
 class Converter:
@@ -18,6 +19,7 @@ class Converter:
             'width': 'ceil(iw / 2) * 2',
             'height': 'ceil(ih / 2) * 2'
         })
+        filename = log_filename('ffmpeg')
 
         ffmpeg.output(
             audio,
@@ -29,4 +31,4 @@ class Converter:
             **{'c:a': 'copy',
                'c:v': 'libx264',
                'metadata': f'description="{description}"'
-               }).overwrite_output().global_args('-progress', 'pipe:1').run()
+               }).overwrite_output().global_args('-report').run(cmd=data_path('ffmpeg.exe'))

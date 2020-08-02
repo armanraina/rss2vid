@@ -5,7 +5,7 @@ import validators
 from dateutil import parser
 from tzlocal import get_localzone
 import sys
-
+from datetime import datetime
 
 def create_filename(title):
     return sanitize_filename(title)
@@ -26,7 +26,7 @@ def create_video_stream(image_stream, audio_stream, out_stream):
 
 
 def validate_url(url: str):
-    return validators.url(url) or validators.url(f'https://{url}')
+    return validators.url(url)
 
 
 def validate_image(image: str):
@@ -67,3 +67,9 @@ def data_path(relative_path):
     else:
         base_path = os.path.dirname(os.path.abspath(__file__))
     return os.path.join(base_path, relative_path)
+
+
+def log_filename(prefix):
+    d = datetime.now()
+    timestamp = d.strftime("%d_%b_%Y_%H_%M_%S_%f")
+    return f'{prefix}_{timestamp}.txt'

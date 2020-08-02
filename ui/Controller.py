@@ -6,9 +6,8 @@ from model.Request import Request
 from model.Downloader import Downloader
 from model.Converter import Converter
 from model.RequestProcessor import RequestProcessor
-from model.FeedProvider import FeedProvider
+from model.FeedProviderFactory import FeedProviderFactory
 from model.EpisodeProcessor import EpisodeProcessor
-from model.FeedSearcher import FeedSearcher
 import constants
 import threading
 from kivy.clock import mainthread
@@ -69,13 +68,12 @@ class Controller(BoxLayout):
         self.argument_cache_manager.update_config(request)
         downloader = Downloader(request.chunk_size)
         converter = Converter()
-        feed_searcher = FeedSearcher()
-        feed_provider = FeedProvider(feed_searcher, request.rss_url)
+        feed_provider_factory = FeedProviderFactory()
         episode_processor = EpisodeProcessor(converter, downloader)
         self.loading_popup = LoadingPopup(title=request.rss_url)
         self.loading_popup.open()
         progress_updater = ProgressUpdater(self.loading_popup.update_progress)
-        request_processor = RequestProcessor(feed_provider, episode_processor, progress_updater)
+        request_processor = RequestProcessor(feed_provider_factory, episode_processor, progress_updater)
         background_thread = threading.Thread(target=self.handle_background_thread,
                                              args=tuple([request_processor, request]))
         background_thread.start()

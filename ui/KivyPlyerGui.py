@@ -10,6 +10,8 @@ kivy.require('1.9.0')
 class RSS2VidApp(MDApp):
 
     def build(self):
+        self.theme_cls.primary_palette = "Cyan"  # "Purple", "Red"
+        # self.theme_cls.theme_style = "Dark"
         self.icon = data_path('icon.png')
         argument_cache_manager = ArgumentCacheManager()
         config = argument_cache_manager.get_config()
