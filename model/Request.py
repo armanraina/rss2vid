@@ -16,3 +16,13 @@ class Request:
         self.output_video_ext = output_video_ext
         self.image = image
         self.chunk_size = chunk_size
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'{self.rss_url!r}, '
+                f'{self.start_date!r}, '
+                f'{self.base_dir!r},'
+                f'{self.input_audio_ext!r}, '
+                f'{self.output_video_ext!r},'
+                f'{self.image!r}, '
+                f'{self.chunk_size!r})')

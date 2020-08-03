@@ -8,9 +8,10 @@ class FeedProviderFactory:
     def __init__(self):
         pass
 
-    def get_feed_provider(self, rss_url: str) -> FeedProvider:
+    @staticmethod
+    def get_feed_provider(rss_url: str) -> FeedProvider:
         response = requests.get(rss_url)
-        content_type = response
+        content_type = response.headers.get('content-type')
         if 'xml' in content_type:
             return XMLFeedProvider(rss_url)
         else:

@@ -14,8 +14,9 @@ class RequestProcessor:
         self.progress_updater = progress_updater
 
     def process(self, request: Request):
+        print(repr(request))
         feed_provider = self.feed_provider_factory.get_feed_provider(request.rss_url)
-
+        print(feed_provider)
         self.episode_processor.set_request(request)
         total_episodes: int = feed_provider.get_number_of_entries(request.start_date)
         for i, episode in enumerate(feed_provider.yield_feed_entries(request.start_date)):

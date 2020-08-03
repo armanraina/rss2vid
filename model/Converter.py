@@ -3,9 +3,10 @@ from util import data_path, log_filename
 
 
 class Converter:
-    def __init__(self, loop: int = 1, frame_rate: int = 1):
+    def __init__(self, loop: int = 1, frame_rate: int = 1, log: bool = False):
         self.loop = loop
         self.frame_rate = frame_rate
+        self.log = log
 
     def to_video(self, image_file, audio_file, out_dir, description):
 
@@ -19,9 +20,8 @@ class Converter:
             'width': 'ceil(iw / 2) * 2',
             'height': 'ceil(ih / 2) * 2'
         })
-        filename = log_filename('ffmpeg')
 
-        ffmpeg.output(
+        output = ffmpeg.output(
             audio,
             image,
             out_dir,
@@ -31,4 +31,8 @@ class Converter:
             **{'c:a': 'copy',
                'c:v': 'libx264',
                'metadata': f'description="{description}"'
-               }).overwrite_output().global_args('-report').run(cmd=data_path('ffmpeg.exe'))
+               }).overwrite_output()
+        if self.log:
+            output.global_args('-report').run(cmd=data_path('ffmpeg.exe'))
+        else:
+            output.run(cmd=data_path('ffmpeg.exe'))

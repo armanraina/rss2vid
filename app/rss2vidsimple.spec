@@ -32,7 +32,7 @@ exe = EXE(pyz, Tree('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\', exclud
           upx=True,
           upx_exclude=[],
           runtime_tmpdir=None,
-          console=True,
+          console=False,
           icon='C:\\Users\\arman\\PycharmProjects\\rss_video_app\\icon.ico')
 
 import shutil
