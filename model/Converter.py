@@ -21,7 +21,7 @@ class Converter:
             'height': 'ceil(ih / 2) * 2'
         })
 
-        output = ffmpeg.output(
+        ffmpeg.output(
             audio,
             image,
             out_dir,
@@ -31,8 +31,11 @@ class Converter:
             **{'c:a': 'copy',
                'c:v': 'libx264',
                'metadata': f'description="{description}"'
-               }).overwrite_output()
+               }).overwrite_output().global_args(
+            '-report',
+            '-loglevel',
+            str(self.__get_log_level())).run(cmd=data_path('ffmpeg.exe'))
+
+    def __get_log_level(self):
         if self.log:
-            output.global_args('-report').run(cmd=data_path('ffmpeg.exe'))
-        else:
-            output.run(cmd=data_path('ffmpeg.exe'))
+            return

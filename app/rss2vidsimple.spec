@@ -19,7 +19,8 @@ a = Analysis(['C:\\Users\\arman\\PycharmProjects\\rss_video_app\\main.py'],
              noarchive=False)
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
-exe = EXE(pyz, Tree('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\', excludes=['*.mp3', '*.mkv', '*.spec']),
+exe = EXE(pyz, Tree('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\',
+          excludes=['*.mp3', '*.mkv', '*.spec', '*.png', '*.jpg', 'ffmpeg.exe']),
           a.scripts,
           a.binaries,
           a.zipfiles,
