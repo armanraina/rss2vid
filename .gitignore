@@ -8,4 +8,5 @@ app/build/
 *.exe
 *.log
 *.txt
+!requirements.txt
 config.ini

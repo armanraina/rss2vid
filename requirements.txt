@@ -43,7 +43,7 @@ pywin32-ctypes==0.2.0
 requests==2.23.0
 six==1.15.0
 soupsieve==2.0.1
-tqdm==4.46.0
+tqdm==4.48.2
 tzlocal==2.0.0
 urllib3==1.25.8
 validators==0.15.0
