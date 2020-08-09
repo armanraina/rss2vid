@@ -1,12 +1,11 @@
 import ffmpeg
-from util import data_path, log_filename
+from util import data_path, get_log_level
 
 
 class Converter:
-    def __init__(self, loop: int = 1, frame_rate: int = 1, log: bool = False):
+    def __init__(self, loop: int = 1, frame_rate: int = 1):
         self.loop = loop
         self.frame_rate = frame_rate
-        self.log = log
 
     def to_video(self, image_file, audio_file, out_dir, description):
 
@@ -34,8 +33,6 @@ class Converter:
                }).overwrite_output().global_args(
             '-report',
             '-loglevel',
-            str(self.__get_log_level())).run(cmd=data_path('ffmpeg.exe'))
+            str(get_log_level())).run(cmd=data_path('ffmpeg.exe'))
 
-    def __get_log_level(self):
-        if self.log:
-            return
+

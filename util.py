@@ -6,6 +6,8 @@ from dateutil import parser
 from tzlocal import get_localzone
 import sys
 from datetime import datetime
+from LogLevel import LogLevel
+
 
 def create_filename(title):
     return sanitize_filename(title)
@@ -73,3 +75,7 @@ def log_filename(prefix):
     d = datetime.now()
     timestamp = d.strftime("%d_%b_%Y_%H_%M_%S_%f")
     return f'{prefix}_{timestamp}.txt'
+
+
+def get_log_level():
+    return LogLevel.PANIC.value

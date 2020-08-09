@@ -4,7 +4,6 @@ from kivymd.app import MDApp
 from model.ArgumentCacheManager import ArgumentCacheManager
 from ui.Controller import Controller
 from util import create_local_datetime, data_path
-kivy.require('1.9.0')
 
 
 class RSS2VidApp(MDApp):

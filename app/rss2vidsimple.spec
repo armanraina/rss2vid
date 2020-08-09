@@ -6,7 +6,6 @@ block_cipher = None
 
 
 a = Analysis(['C:\\Users\\arman\\PycharmProjects\\rss_video_app\\main.py'],
-             pathex=['C:\\Users\\arman\\app'],
              binaries=[],
              datas=[],
              hiddenimports=['pkg_resources.py2_warn', 'plyer.platforms.win.filechooser'],

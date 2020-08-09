@@ -45,7 +45,7 @@
                 UtilButton:
                     text: 'Select Image File'
                     on_press: root.choose_image()
-                    icon: 'video-image'
+                    icon: 'image'
             MDBoxLayout:
                 MDTextField:
                     hint_text: 'Image'
@@ -58,8 +58,6 @@
                     on_text: self.error = not util.validate_image(self.text)
                     on_text: root.image = self.text
                     on_error: root.image_error = self.error
-
-
         MDBoxLayout:
             orientation: 'horizontal'
             MDBoxLayout:
