@@ -5,7 +5,7 @@ from kivymd import hooks_path as kivymd_hooks_path
 block_cipher = None
 
 
-a = Analysis(['C:\\Users\\arman\\PycharmProjects\\rss_video_app\\main.py'],
+a = Analysis(['..\\main.py'],
              binaries=[],
              datas=[],
              hiddenimports=['pkg_resources.py2_warn', 'plyer.platforms.win.filechooser'],
