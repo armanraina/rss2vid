@@ -34,6 +34,7 @@ steps:
     python -m PyInstaller rss2vidsimple.spec
   workingDirectory: app/  
   displayName: 'Building app'
+  timeoutInMinutes: 4
 
 #- script: |
 #    pip install pytest pytest-azurepipelines
