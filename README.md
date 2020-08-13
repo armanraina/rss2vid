@@ -9,6 +9,7 @@ A GUI app for batch converting podcasts to videos for social media.
 ![alt text](https://github.com/armanraina/rss2vid/blob/master/Capture2.PNG "Step One")
 
 2. Set conversion options
+
 ![alt text](https://github.com/armanraina/rss2vid/blob/master/Capture3.PNG "Step One")
 
 
