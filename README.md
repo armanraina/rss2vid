@@ -1,8 +1,6 @@
 # rss2vid
-
-## usage
-
 A GUI app for batch converting podcasts to videos for social media.
+## usage
 
 1. Get the RSS link of your podcast 
 
