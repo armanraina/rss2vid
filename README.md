@@ -13,6 +13,7 @@ A GUI app for batch converting podcasts to videos for social media.
 
 
 3. Process batch conversion
+
 ![alt text](https://github.com/armanraina/rss2vid/blob/master/Capture4.PNG "Step One")
 
 ## support project
