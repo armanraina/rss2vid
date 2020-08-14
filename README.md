@@ -2,16 +2,18 @@
 A GUI app for batch converting podcasts to videos for social media.
 ## usage
 
-1. Get the RSS link of your podcast 
+1. Download and unzip [package](https://github.com/armanraina/rss2vid/releases/download/v1.0-alpha/dist.zip)
+
+2. Get the RSS link of your podcast 
 
 ![alt text](https://github.com/armanraina/rss2vid/blob/master/Capture2.PNG "Step One")
 
-2. Set conversion options
+3. Set conversion options
 
 ![alt text](https://github.com/armanraina/rss2vid/blob/master/Capture3.PNG "Step One")
 
 
-3. Process batch conversion
+4. Process batch conversion
 
 ![alt text](https://github.com/armanraina/rss2vid/blob/master/Capture4.PNG "Step One")
 
