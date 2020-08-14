@@ -36,6 +36,13 @@ exe = EXE(pyz, Tree('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\',
           icon='C:\\Users\\arman\\PycharmProjects\\rss_video_app\\icon.ico')
 
 import shutil
-shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\samples\\mic.jpg', '{0}\\mic.jpg'.format(DISTPATH))
-shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\icon.png', '{0}\\icon.png'.format(DISTPATH))
-shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\ffmpeg.exe', '{0}\\ffmpeg.exe'.format(DISTPATH))
+shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\samples\\mic.jpg',
+                '{0}\\mic.jpg'.format(DISTPATH))
+shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\icon.png',
+                '{0}\\icon.png'.format(DISTPATH))
+shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\ffmpeg.exe',
+                '{0}\\ffmpeg.exe'.format(DISTPATH))
+shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\ffmpeg-snapshot.tar.bz2',
+                '{0}\\ffmpeg-snapshot.tar.bz2'.format(DISTPATH))
+shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\LICENSE',
+                '{0}\\LICENSE'.format(DISTPATH))
