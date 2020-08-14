@@ -1,6 +1,6 @@
-from model.FeedProvider import FeedProvider
-from model.XMLFeedProvider import XMLFeedProvider
-from model.HTMLFeedProvider import HTMLFeedProvider
+from src.model.FeedProvider import FeedProvider
+from src.model.XMLFeedProvider import XMLFeedProvider
+from src.model.HTMLFeedProvider import HTMLFeedProvider
 import requests
 
 

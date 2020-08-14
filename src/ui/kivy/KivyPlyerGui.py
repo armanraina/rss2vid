@@ -1,9 +1,8 @@
-import kivy
 from kivymd.app import MDApp
 
-from model.ArgumentCacheManager import ArgumentCacheManager
-from ui.Controller import Controller
-from util import create_local_datetime, data_path
+from src.model.ArgumentCacheManager import ArgumentCacheManager
+from src.ui.kivy.Controller import Controller
+from src.util import create_local_datetime, data_path
 
 
 class RSS2VidApp(MDApp):

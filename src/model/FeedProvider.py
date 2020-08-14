@@ -1,7 +1,5 @@
-import feedparser
 from dateutil import parser
 from datetime import timezone, datetime
-from model import FeedSearcher
 from abc import ABC, abstractmethod
 
 

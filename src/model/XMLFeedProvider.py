@@ -1,6 +1,5 @@
-from model.FeedProvider import FeedProvider
+from src.model.FeedProvider import FeedProvider
 import feedparser
-from abc import ABC, abstractmethod
 
 
 class XMLFeedProvider(FeedProvider):

@@ -6,7 +6,7 @@ from dateutil import parser
 from tzlocal import get_localzone
 import sys
 from datetime import datetime
-from LogLevel import LogLevel
+from src.LogLevel import LogLevel
 
 
 def create_filename(title):

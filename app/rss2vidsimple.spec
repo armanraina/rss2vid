@@ -5,7 +5,7 @@ from kivymd import hooks_path as kivymd_hooks_path
 block_cipher = None
 
 
-a = Analysis(['..\\main.py'],
+a = Analysis(['..\\src\\main.py'],
              binaries=[],
              datas=[],
              hiddenimports=['pkg_resources.py2_warn', 'plyer.platforms.win.filechooser'],
@@ -33,7 +33,7 @@ exe = EXE(pyz, Tree('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\',
           upx_exclude=[],
           runtime_tmpdir=None,
           console=False,
-          icon='C:\\Users\\arman\\PycharmProjects\\rss_video_app\\icon.ico')
+          icon='C:\\Users\\arman\\PycharmProjects\\rss_video_app\\assets\\icon.ico')
 
 import shutil
 shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\samples\\mic.jpg',
@@ -42,7 +42,7 @@ shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\icon.png',
                 '{0}\\icon.png'.format(DISTPATH))
 shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\ffmpeg.exe',
                 '{0}\\ffmpeg.exe'.format(DISTPATH))
-shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\ffmpeg-snapshot.tar.bz2',
+shutil.copyfile('..\\assets\\ffmpeg-snapshot.tar.bz2',
                 '{0}\\ffmpeg-snapshot.tar.bz2'.format(DISTPATH))
 shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\LICENSE',
                 '{0}\\LICENSE'.format(DISTPATH))

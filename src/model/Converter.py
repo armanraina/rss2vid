@@ -1,5 +1,5 @@
 import ffmpeg
-from util import data_path, get_log_level
+from src.util import data_path, get_log_level
 
 
 class Converter:

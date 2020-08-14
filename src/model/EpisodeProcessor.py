@@ -1,7 +1,7 @@
-from model import Request
-from model import Converter
-from model import Downloader
-from util import create_filename, create_path
+from src.model import Request
+from src.model import Converter
+from src.model import Downloader
+from src.util import create_filename, create_path
 
 
 class EpisodeProcessor:

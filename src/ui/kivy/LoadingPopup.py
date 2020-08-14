@@ -3,7 +3,7 @@ from kivy.lang import Builder
 from kivy.properties import NumericProperty, StringProperty, BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.button import MDRaisedButton
-from constants import LOADING_STRING, COUNTING_STRING, DONE_STRING
+from src.constants import LOADING_STRING, COUNTING_STRING, DONE_STRING
 from kivymd.uix.dialog import MDDialog
 
 loading_kv = '''

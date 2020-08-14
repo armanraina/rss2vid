@@ -1,8 +1,8 @@
-from model import FeedProviderFactory
-from model import Request
-from model import EpisodeProcessor
-from model import ProgressUpdater
-from model.DownloadException import DownloadException
+from src.model import FeedProviderFactory
+from src.model import Request
+from src.model import EpisodeProcessor
+from src.model import ProgressUpdater
+from src.model import DownloadException
 
 
 class RequestProcessor:

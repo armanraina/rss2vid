@@ -1,6 +1,6 @@
 import requests
 from tqdm import tqdm
-from model.DownloadException import DownloadException
+from src.model import DownloadException
 
 
 class Downloader:

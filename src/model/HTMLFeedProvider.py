@@ -1,7 +1,6 @@
 import feedparser
-from model.FeedProvider import FeedProvider
-from model.FeedSearcher import FeedSearcher
-from abc import ABC, abstractmethod
+from src.model.FeedProvider import FeedProvider
+from src.model.FeedSearcher import FeedSearcher
 
 
 class HTMLFeedProvider(FeedProvider):

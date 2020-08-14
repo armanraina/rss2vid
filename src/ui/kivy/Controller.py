@@ -1,21 +1,21 @@
 from plyer import filechooser
 from datetime import datetime
-from model.ArgumentCacheManager import ArgumentCacheManager
-from model.ProgressUpdater import ProgressUpdater
-from model.Request import Request
-from model.Downloader import Downloader
-from model.Converter import Converter
-from model.RequestProcessor import RequestProcessor
-from model.FeedProviderFactory import FeedProviderFactory
-from model.EpisodeProcessor import EpisodeProcessor
-import constants
+from src.model.ArgumentCacheManager import ArgumentCacheManager
+from src.model.ProgressUpdater import ProgressUpdater
+from src.model.Request import Request
+from src.model.Downloader import Downloader
+from src.model.Converter import Converter
+from src.model.RequestProcessor import RequestProcessor
+from src.model.FeedProviderFactory import FeedProviderFactory
+from src.model.EpisodeProcessor import EpisodeProcessor
+from src import constants
 import threading
 from kivy.clock import mainthread
 from kivy.properties import StringProperty, ObjectProperty, OptionProperty, BooleanProperty
 from kivymd.vendor.circularTimePicker import CircularTimePicker
 from kivymd.uix.picker import MDDatePicker
 from kivy.uix.boxlayout import BoxLayout
-from ui.LoadingPopup import LoadingPopup
+from src.ui.kivy.LoadingPopup import LoadingPopup
 
 
 class Controller(BoxLayout):
@@ -73,6 +73,7 @@ class Controller(BoxLayout):
         self.loading_popup = LoadingPopup(title=request.rss_url)
         self.loading_popup.open()
         progress_updater = ProgressUpdater(self.loading_popup.update_progress)
+        print(repr(request))
         request_processor = RequestProcessor(feed_provider_factory, episode_processor, progress_updater)
         background_thread = threading.Thread(target=self.handle_background_thread,
                                              args=tuple([request_processor, request]))
