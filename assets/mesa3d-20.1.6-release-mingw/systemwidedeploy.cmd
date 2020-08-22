@@ -74,7 +74,6 @@
 @REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\OpenGLDrivers\MSOGL" /v "Version" /t REG_DWORD /d "2" /f
 @echo.
 @echo Desktop OpenGL drivers deploy complete.
-@pause
 @GOTO deploy
 
 :osmesa
@@ -94,7 +93,6 @@
 @IF /I %PROCESSOR_ARCHITECTURE%==AMD64 copy "%mesaloc%\x64\osmesa-%osmesatype%\osmesa.dll" "%windir%\System32"
 @echo.
 @echo Off-screen render driver deploy complete.
-@pause
 @GOTO deploy
 
 :graw
@@ -109,7 +107,6 @@
 @IF /I %PROCESSOR_ARCHITECTURE%==AMD64 IF EXIST "%mesaloc%\x64\libglapi.dll" copy "%mesaloc%\x64\libglapi.dll" "%windir%\System32"
 @echo.
 @echo graw framework deploy complete.
-@pause
 @GOTO deploy
 
 :update
@@ -156,7 +153,6 @@
 :doneupdate
 @echo.
 @echo Update complete.
-@pause
 @GOTO deploy
 
 :uninstall

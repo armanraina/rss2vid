@@ -26,7 +26,7 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
-    (echo y && echo 6) | systemwidedeploy.cmd
+    systemwidedeploy.cmd
   workingDirectory: assets/mesa3d-20.1.6-release-mingw/  
   displayName: 'Install openGL'
 
