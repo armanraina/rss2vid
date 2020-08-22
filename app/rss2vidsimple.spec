@@ -19,7 +19,7 @@ a = Analysis(['..\\src\\main.py'],
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 exe = EXE(pyz, Tree('..\\',
-          excludes=['*.mp3', '*.mkv', '*.spec', '*.png', '*.jpg', 'ffmpeg.exe']),
+          excludes=['*.mp3', '*.mkv', '*.spec', '*.png', '*.jpg', 'ffmpeg.exe', 'assets']),
           a.scripts,
           a.binaries,
           a.zipfiles,
