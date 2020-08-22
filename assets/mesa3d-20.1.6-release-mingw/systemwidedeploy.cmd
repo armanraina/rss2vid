@@ -17,7 +17,6 @@
 @echo used to replace Microsoft Windows inbox OpenGL 1.1 software render
 @echo driver with Mesa3D softpipe, llvmpipe or swr driver.
 @echo.
-@pause
 @set mesaloc=%~dp0
 @IF "%mesaloc:~-1%"=="\" set mesaloc=%mesaloc:~0,-1%
 
@@ -38,7 +37,7 @@
 @IF %mesainstalled%==1 echo 7. Remove system-wide deployments (uninstall);
 @IF %mesainstalled%==1 echo 8. Exit
 @IF %mesainstalled%==0 echo 6. Exit
-@set /p deploychoice=Enter choice:
+@set deploychoice=6
 @if "%deploychoice%"=="1" GOTO desktopgl
 @if "%deploychoice%"=="2" GOTO desktopgl
 @if "%deploychoice%"=="3" GOTO osmesa
@@ -49,7 +48,6 @@
 @if "%deploychoice%"=="8" IF %mesainstalled%==1 GOTO exit
 @if "%deploychoice%"=="6" IF %mesainstalled%==0 GOTO exit
 @echo Invaild entry
-@pause
 @GOTO deploy
 
 :desktopgl
@@ -180,10 +178,8 @@
 @IF /I %PROCESSOR_ARCHITECTURE%==AMD64 IF EXIST "%windir%\SysWOW64\graw_null.dll" del "%windir%\SysWOW64\graw_null.dll"
 @echo.
 @echo Uninstall complete.
-@pause
 @GOTO deploy
 
 :exit
 @echo Good Bye!
-@pause
 @exit
