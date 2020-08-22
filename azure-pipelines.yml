@@ -41,13 +41,7 @@ steps:
   workingDirectory: app/  
   displayName: 'Building app'
   timeoutInMinutes: 4
-
-- script: |
-    python -m PyInstaller rss2vidsimple.spec
-  workingDirectory: app/  
-  displayName: 'Building app'
-  timeoutInMinutes: 4
-
+  
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: $(System.DefaultWorkingDirectory)/app/dist
