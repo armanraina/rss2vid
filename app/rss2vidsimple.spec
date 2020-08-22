@@ -33,16 +33,16 @@ exe = EXE(pyz, Tree('..\\',
           upx_exclude=[],
           runtime_tmpdir=None,
           console=False,
-          icon='C:\\Users\\arman\\PycharmProjects\\rss_video_app\\assets\\icon.ico')
+          icon='..\\assets\\icon.ico')
 
 import shutil
-shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\samples\\mic.jpg',
+shutil.copyfile('..\\samples\\mic.jpg',
                 '{0}\\mic.jpg'.format(DISTPATH))
-shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\icon.png',
+shutil.copyfile('..\\icon.png',
                 '{0}\\icon.png'.format(DISTPATH))
-shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\ffmpeg.exe',
+shutil.copyfile('..\\ffmpeg.exe',
                 '{0}\\ffmpeg.exe'.format(DISTPATH))
 shutil.copyfile('..\\assets\\ffmpeg-snapshot.tar.bz2',
                 '{0}\\ffmpeg-snapshot.tar.bz2'.format(DISTPATH))
-shutil.copyfile('C:\\Users\\arman\\PycharmProjects\\rss_video_app\\LICENSE',
+shutil.copyfile('..\\LICENSE',
                 '{0}\\LICENSE'.format(DISTPATH))

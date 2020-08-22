@@ -5,7 +5,6 @@
 .idea/
 app/dist/
 app/build/
-ffmpeg.exe
 *.log
 *.txt
 !requirements.txt
