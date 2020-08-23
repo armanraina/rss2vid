@@ -1,37 +1,24 @@
-## Welcome to GitHub Pages
+## rss2vid
 
-You can use the [editor on GitHub](https://github.com/armanraina/rss2vid/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+A GUI app for batch converting podcasts to videos for social media.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### usage
 
-### Markdown
+1. Download and unzip [package](https://github.com/armanraina/rss2vid/releases/download/v1.0.1-alpha/rss2vid-1.0.1.zip)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+2. Get the RSS link of your podcast 
 
-```markdown
-Syntax highlighted code block
+![alt text](https://github.com/armanraina/rss2vid/blob/master/assets/Capture2.PNG "Step One")
 
-# Header 1
-## Header 2
-### Header 3
+3. Set conversion options
 
-- Bulleted
-- List
+![alt text](https://github.com/armanraina/rss2vid/blob/master/assets/Capture3.PNG "Step One")
 
-1. Numbered
-2. List
+4. Process batch conversion
 
-**Bold** and _Italic_ and `Code` text
+![alt text](https://github.com/armanraina/rss2vid/blob/master/assets/Capture4.PNG "Step One")
 
-[Link](url) and ![Image](src)
-```
+### support project
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TJ36BT8CWWEFN&source=url)
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/armanraina/rss2vid/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
