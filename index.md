@@ -8,15 +8,15 @@ A GUI app for batch converting podcasts to videos for social media.
 
 2. Get the RSS link of your podcast 
 
-![alt text](/assets/Capture2.PNG "Step One")
+![alt text](Capture2.PNG "Step One")
 
 3. Set conversion options
 
-![alt text](/assets/Capture3.PNG "Step One")
+![alt text](Capture3.PNG "Step One")
 
 4. Process batch conversion
 
-![alt text](/assets/Capture4.PNG "Step One")
+![alt text](Capture4.PNG "Step One")
 
 ### support project
 
