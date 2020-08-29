@@ -1,6 +1,6 @@
 from kivymd.app import MDApp
 
-from src.model.ArgumentCacheManager import ArgumentCacheManager
+from src.model.argument_cache_manager import ArgumentCacheManager
 from src.ui.kivy.Controller import Controller
 from src.util import create_local_datetime, data_path
 

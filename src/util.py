@@ -6,7 +6,7 @@ from dateutil import parser
 from tzlocal import get_localzone
 import sys
 from datetime import datetime
-from src.LogLevel import LogLevel
+from src.log_level import LogLevel
 
 
 def create_filename(title):
@@ -67,7 +67,7 @@ def data_path(relative_path):
     if getattr(sys, 'frozen', False):
         base_path = os.path.dirname(os.path.abspath(sys.executable))
     else:
-        base_path = os.path.dirname(os.path.abspath(__file__))
+        base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_path, relative_path)
 
 

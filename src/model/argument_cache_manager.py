@@ -3,7 +3,7 @@ from dateutil import parser
 import os.path
 from src.util import data_path
 from src.constants import DEFAULT_DATE_STR
-from src.model import Request
+from src.model import request
 
 
 class ArgumentCacheManager:
@@ -18,7 +18,7 @@ class ArgumentCacheManager:
 		config['DEFAULT']['BASE_DIR'] = data_path('')
 		config['DEFAULT']['EXT_INPUT_AUDIO'] = '.mp3'
 		config['DEFAULT']['EXT_OUTPUT_VIDEO'] = '.mkv'
-		config['DEFAULT']['IMAGE'] = os.path.join(config['DEFAULT']['BASE_DIR'], 'mic.jpg')
+		config['DEFAULT']['IMAGE'] = os.path.join(config['DEFAULT']['BASE_DIR'], 'samples', 'mic.jpg')
 		config['DEFAULT']['START_DATE'] = date_str
 		config['DEFAULT']['CHUNK_SIZE'] = '1024'
 
@@ -40,7 +40,7 @@ class ArgumentCacheManager:
 		with open(self.filename, 'w+') as configfile:
 			config.write(configfile)
 
-	def update_config(self, request: Request):
+	def update_config(self, request: request):
 		config = configparser.ConfigParser()
 
 		config['DEFAULT']['RSS_URL'] = request.rss_url

@@ -1,9 +1,9 @@
-from kivy.clock import mainthread
+from kivy.clock import mainthread, Clock
 from kivy.lang import Builder
-from kivy.properties import NumericProperty, StringProperty, BooleanProperty
+from kivy.properties import NumericProperty, StringProperty, BooleanProperty, ListProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.button import MDRaisedButton
-from src.constants import LOADING_STRING, COUNTING_STRING, DONE_STRING
+from src.constants import LOADING_STRING, COUNTING_STRING, DONE_STRING, ERROR_STRING
 from kivymd.uix.dialog import MDDialog
 
 loading_kv = '''
@@ -28,11 +28,14 @@ class Content(BoxLayout):
     progress_text = StringProperty(defaultvalue=COUNTING_STRING)
     image = StringProperty()
     done = BooleanProperty(defaultvalue=False)
+    errors = ListProperty(defaultvalue=[])
 
     def create_progress_text(self):
-        if self.done:
+        if len(self.errors) > 0:
+            return ERROR_STRING.format(str(len(self.errors)), self.errors[0])
+        elif self.done:
             return DONE_STRING
-        if self.progress > 0:
+        elif self.progress > 0:
             return LOADING_STRING.format(str(self.progress), str(self.total))
         else:
             return COUNTING_STRING
@@ -56,9 +59,10 @@ class LoadingPopup(MDDialog):
         self.content_cls.progress = progress
         self.content_cls.total = total
 
-    def close(self):
+    def close(self, errors: []):
+        self.content_cls.errors = errors
         self.content_cls.done = True
-        self.dismiss()
+        Clock.schedule_once(self.dismiss, 5)
 
 
 

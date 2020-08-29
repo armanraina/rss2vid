@@ -1,4 +1,5 @@
 import requests
+from src.model.feed_exception import FeedException
 
 
 class FeedSearcher:
@@ -14,4 +15,4 @@ class FeedSearcher:
         if response.status_code == requests.codes.ok:
             return response.json()
         else:
-            print(response.status_code)
+            raise FeedException(f'{self.__class__.__name__}: Wrong response code : {response.status_code}')

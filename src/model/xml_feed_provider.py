@@ -1,4 +1,4 @@
-from src.model.FeedProvider import FeedProvider
+from src.model.feed_provider import FeedProvider
 import feedparser
 
 

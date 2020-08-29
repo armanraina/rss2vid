@@ -1,13 +1,10 @@
 from plyer import filechooser
 from datetime import datetime
-from src.model.ArgumentCacheManager import ArgumentCacheManager
-from src.model.ProgressUpdater import ProgressUpdater
-from src.model.Request import Request
-from src.model.Downloader import Downloader
-from src.model.Converter import Converter
-from src.model.RequestProcessor import RequestProcessor
-from src.model.FeedProviderFactory import FeedProviderFactory
-from src.model.EpisodeProcessor import EpisodeProcessor
+from src.model.argument_cache_manager import ArgumentCacheManager
+from src.model.progress_updater import ProgressUpdater
+from src.model.request import Request
+from src.model.response import Response
+from src.model.request_processor import RequestProcessor
 from src import constants
 import threading
 from kivy.clock import mainthread
@@ -65,16 +62,15 @@ class Controller(BoxLayout):
                           constants.MP3_EXT,
                           self.video_format,
                           self.image)
+
         self.argument_cache_manager.update_config(request)
-        downloader = Downloader(request.chunk_size)
-        converter = Converter()
-        feed_provider_factory = FeedProviderFactory()
-        episode_processor = EpisodeProcessor(converter, downloader)
+
         self.loading_popup = LoadingPopup(title=request.rss_url)
         self.loading_popup.open()
+
         progress_updater = ProgressUpdater(self.loading_popup.update_progress)
-        print(repr(request))
-        request_processor = RequestProcessor(feed_provider_factory, episode_processor, progress_updater)
+
+        request_processor = RequestProcessor(progress_updater)
         background_thread = threading.Thread(target=self.handle_background_thread,
                                              args=tuple([request_processor, request]))
         background_thread.start()
@@ -84,5 +80,5 @@ class Controller(BoxLayout):
         self.loading_popup.close()
 
     def handle_background_thread(self, request_processor: RequestProcessor, request: Request):
-        request_processor.process(request)
-        self.dismiss_popup()
+        response: Response = request_processor.process(request)
+        self.dismiss_popup(response)

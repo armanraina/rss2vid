@@ -1,7 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 from kivy_deps import sdl2, glew
 from kivymd import hooks_path as kivymd_hooks_path
-
+import shutil
 block_cipher = None
 
 
@@ -35,9 +35,9 @@ exe = EXE(pyz, Tree('..\\',
           console=False,
           icon='..\\assets\\icon.ico')
 
-import shutil
-shutil.copyfile('..\\samples\\mic.jpg',
-                '{0}\\mic.jpg'.format(DISTPATH))
+shutil.copytree('..\\samples',
+                '{0}\\samples'.format(DISTPATH),
+                ignore=shutil.ignore_patterns('*.mp3', '*.mkv', '*.avi', '*.mp4'))
 shutil.copyfile('..\\icon.png',
                 '{0}\\icon.png'.format(DISTPATH))
 shutil.copyfile('..\\ffmpeg.exe',

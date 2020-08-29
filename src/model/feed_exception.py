@@ -1,0 +1,2 @@
+class FeedException(Exception):
+    pass

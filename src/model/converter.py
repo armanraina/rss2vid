@@ -1,25 +1,20 @@
 import ffmpeg
 from src.util import data_path, get_log_level
+from src.model.conversion_exception import ConversionException
 
 
-class Converter:
-    def __init__(self, loop: int = 1, frame_rate: int = 1):
-        self.loop = loop
-        self.frame_rate = frame_rate
-
-    def to_video(self, image_file, audio_file, out_dir, description):
-
+def to_video(image_file, audio_file, out_dir, description, loop: int = 1, frame_rate: int = 1):
+    try:
         audio = ffmpeg.input(audio_file)
 
         image = ffmpeg.input(
             image_file,
-            loop=self.loop,
-            framerate=self.frame_rate
+            loop=loop,
+            framerate=frame_rate
         ).filter("pad", **{
             'width': 'ceil(iw / 2) * 2',
             'height': 'ceil(ih / 2) * 2'
         })
-
         ffmpeg.output(
             audio,
             image,
@@ -34,5 +29,7 @@ class Converter:
             '-report',
             '-loglevel',
             str(get_log_level())).run(cmd=data_path('ffmpeg.exe'))
+    except ffmpeg.Error as e:
+        raise ConversionException(str(e))
 
 
