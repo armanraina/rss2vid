@@ -9,3 +9,4 @@ app/build/
 *.txt
 !requirements.txt
 config.ini
+samples/life_for_rent.mp3

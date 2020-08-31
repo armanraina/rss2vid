@@ -1,9 +1,17 @@
 import ffmpeg
 from src.util import data_path, get_log_level
 from src.model.conversion_exception import ConversionException
+import itertools
 
-
-def to_video(image_file, audio_file, out_dir, description, loop: int = 1, frame_rate: int = 1):
+def to_video(image_file,
+             audio_file,
+             out_dir,
+             description,
+             loop: int = 1,
+             frame_rate: int = 1,
+             speed: str = 'ultrafast',
+             encoding: str = 'libx264',
+             quality: int = 23):
     try:
         audio = ffmpeg.input(audio_file)
 
@@ -12,24 +20,47 @@ def to_video(image_file, audio_file, out_dir, description, loop: int = 1, frame_
             loop=loop,
             framerate=frame_rate
         ).filter("pad", **{
-            'width': 'ceil(iw / 2) * 2',
+           'width': 'ceil(iw / 2) * 2',
             'height': 'ceil(ih / 2) * 2'
         })
-        ffmpeg.output(
+        output = ffmpeg.output(
             audio,
             image,
             out_dir,
             shortest=None,
-            tune='stillimage',
-            crf=18,
+            crf=quality,
+            preset=speed,
             **{'c:a': 'copy',
-               'c:v': 'libx264',
+               'c:v': encoding,
                'metadata': f'description="{description}"'
                }).overwrite_output().global_args(
             '-report',
             '-loglevel',
-            str(get_log_level())).run(cmd=data_path('ffmpeg.exe'))
+            str(get_log_level()))
+        output.run(cmd=data_path('ffmpeg.exe'))
     except ffmpeg.Error as e:
         raise ConversionException(str(e))
 
 
+if __name__ == '__main__':
+    import os
+    import time
+    image_file = data_path(os.path.join('samples', 'mic.jpg'))
+    audio_file = data_path(os.path.join('samples', 'life_for_rent.mp3'))
+    out_dir = data_path('samples/life_for_rent.mkv')
+    description = 'life_for_rent song'
+    runs = 3
+    encodings = ['libx264']
+    speeds = ['ultrafast']
+    exts = ['mp4']
+    qualities = [23]
+    options = itertools.product(range(runs), encodings, speeds, exts, qualities)
+    timing = {}
+    for run, encoding, speed, ext, quality in options:
+        key = f'{encoding}_{speed}_{run}_{quality}_{ext}'
+        tic = time.perf_counter()
+        out_dir = data_path('samples/life_for_rent_{0}.{1}').format(key, ext)
+        to_video(image_file, audio_file, out_dir, description, encoding=encoding, speed=speed, quality=quality)
+        toc = time.perf_counter()
+        timing[key] = toc-tic
+    print(str(timing))
