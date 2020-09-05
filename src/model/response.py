@@ -11,6 +11,7 @@ class Response:
     def fail(self, message: str):
         self.episodes_skipped = self.total_episodes
         self.messages.append(message)
+        return self
 
     def __repr__(self):
         return (f'{self.__class__.__name__}('

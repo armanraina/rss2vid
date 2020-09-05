@@ -50,12 +50,16 @@ def validate_date(date: str):
 def create_local_datetime(string: str):
     if validate_date(string):
         parsed_start_date = parser.parse(string)
-        if not parsed_start_date.tzinfo:
-            local_tz = get_localzone()
-            parsed_start_date = local_tz.localize(parsed_start_date)
-        return parsed_start_date
+        return localize_datetime(parsed_start_date)
     else:
         return None
+
+
+def localize_datetime(date: datetime):
+    if not date.tzinfo:
+        local_tz = get_localzone()
+        date = local_tz.localize(date)
+    return date
 
 
 def resource_path(relative_path):
