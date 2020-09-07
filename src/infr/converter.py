@@ -1,7 +1,8 @@
 import ffmpeg
 from src.util import data_path, get_log_level
-from src.model.conversion_exception import ConversionException
+from src.infr.conversion_exception import ConversionException
 import itertools
+
 
 def to_video(image_file,
              audio_file,
@@ -42,6 +43,51 @@ def to_video(image_file,
         raise ConversionException(str(e))
 
 
+def to_video_viz(image_file,
+                 audio_file,
+                 out_dir,
+                 description,
+                 loop: int = 1,
+                 frame_rate: int = 1,
+                 speed: str = 'ultrafast',
+                 encoding: str = 'libx264',
+                 quality: int = 23,
+                 size=(1920, 1080)):
+    try:
+        audio = ffmpeg.input(audio_file)
+
+        viz = audio.filter(
+            "showwaves", size=f'{size[0]}x{size[1]}',
+            colors='white', mode='line'
+            
+        )
+
+        image = ffmpeg.input(
+            image_file
+        ).filter("scale",
+                 width=size[0],
+                 height=size[1]
+        ).overlay(viz)
+
+        output = ffmpeg.output(
+            audio,
+            image,
+            out_dir,
+            shortest=None,
+            crf=quality,
+            preset=speed,
+            **{'c:a': 'copy',
+               'c:v': encoding,
+               'metadata': f'description="{description}"'
+               }).overwrite_output().global_args(
+            '-report',
+            '-loglevel',
+            str(get_log_level()))
+        output.run(cmd=data_path('ffmpeg.exe'))
+    except ffmpeg.Error as e:
+        raise ConversionException(str(e))
+
+
 if __name__ == '__main__':
     import os
     import time
@@ -49,7 +95,7 @@ if __name__ == '__main__':
     audio_file = data_path(os.path.join('samples', 'life_for_rent.mp3'))
     out_dir = data_path('samples/life_for_rent.mkv')
     description = 'life_for_rent song'
-    runs = 3
+    runs = 1
     encodings = ['libx264']
     speeds = ['ultrafast']
     exts = ['mp4']
@@ -60,7 +106,7 @@ if __name__ == '__main__':
         key = f'{encoding}_{speed}_{run}_{quality}_{ext}'
         tic = time.perf_counter()
         out_dir = data_path('samples/life_for_rent_{0}.{1}').format(key, ext)
-        to_video(image_file, audio_file, out_dir, description, encoding=encoding, speed=speed, quality=quality)
+        to_video_viz(image_file, audio_file, out_dir, description, encoding=encoding, speed=speed, quality=quality)
         toc = time.perf_counter()
         timing[key] = toc-tic
     print(str(timing))

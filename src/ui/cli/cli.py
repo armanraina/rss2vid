@@ -1,9 +1,8 @@
-from src.model.response import Response
-from src.model.request import Request
-from src.constants import MKV_EXT, MIN_DATE_STR, LOADING_STRING, COUNTING_STRING, MP3_EXT, DEFAULT_DATE_STR
+from src.appl.request import Request
+from src.constants import MKV_EXT, MIN_DATE_STR, LOADING_STRING, COUNTING_STRING, MP3_EXT
 from src.util import localize_datetime
 from src.model.progress_updater import ProgressUpdater
-from src.model.request_processor import RequestProcessor
+from src.appl.request_processor import RequestProcessor
 import click
 
 

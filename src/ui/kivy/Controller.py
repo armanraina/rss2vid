@@ -2,14 +2,13 @@ from plyer import filechooser
 from datetime import datetime
 from src.model.argument_cache_manager import ArgumentCacheManager
 from src.model.progress_updater import ProgressUpdater
-from src.model.request import Request
-from src.model.response import Response
-from src.model.request_processor import RequestProcessor
+from src.appl.request import Request
+from src.appl.response import Response
+from src.appl.request_processor import RequestProcessor
 from src import constants
 import threading
 from kivy.clock import mainthread
 from kivy.properties import StringProperty, ObjectProperty, OptionProperty, BooleanProperty
-from kivymd.vendor.circularTimePicker import CircularTimePicker
 from kivymd.uix.picker import MDDatePicker
 from kivy.uix.boxlayout import BoxLayout
 from src.ui.kivy.LoadingPopup import LoadingPopup

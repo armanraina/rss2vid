@@ -3,7 +3,7 @@ from dateutil import parser
 import os.path
 from src.util import data_path
 from src.constants import DEFAULT_DATE_STR
-from src.model import request
+from src.appl import request
 
 
 class ArgumentCacheManager:

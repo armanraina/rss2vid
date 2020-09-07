@@ -1,6 +1,7 @@
 from dateutil import parser
 from datetime import timezone, datetime
 from abc import ABC, abstractmethod
+from src.model.episode import Episode
 
 
 class FeedProvider(ABC):
@@ -24,7 +25,7 @@ class FeedProvider(ABC):
             start_date = datetime.min.replace(tzinfo=timezone.utc)
         if end_date is None:
             end_date = datetime.max.replace(tzinfo=timezone.utc)
-        return [episode for episode in feed.entries if start_date < parser.parse(episode.published) < end_date]
+        return [Episode(episode) for episode in feed.entries if start_date < parser.parse(episode.published) < end_date]
 
 
 

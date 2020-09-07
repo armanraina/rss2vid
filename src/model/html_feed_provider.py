@@ -1,6 +1,6 @@
 import feedparser
 from src.model.feed_provider import FeedProvider
-from src.model.feed_searcher import FeedSearcher
+from src.infr.feed_searcher import FeedSearcher
 
 
 class HTMLFeedProvider(FeedProvider):

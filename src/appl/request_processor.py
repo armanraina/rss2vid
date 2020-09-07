@@ -1,15 +1,15 @@
 from src.model import feed_provider_factory
-from src.model.request import Request
-from src.model.response import Response
-from src.model import episode_processor
+from src.appl.request import Request
+from src.appl.response import Response
+from src.appl import episode_processor
 from src.model.progress_updater import ProgressUpdater
 from src.model.download_exception import DownloadException
 from src.model.input_exception import InputException
 from src.model.feed_exception import FeedException
 from src.model.feed_provider import FeedProvider
-from src.model.conversion_exception import ConversionException
+from src.infr.conversion_exception import ConversionException
 from src.util import validate_image
-
+from src.model.episode import Episode
 
 class RequestProcessor:
     def __init__(self, progress_updater: ProgressUpdater):
@@ -24,7 +24,7 @@ class RequestProcessor:
         except (FeedException, InputException) as e:
             return Response(0, 0, []).fail(str(e))
 
-    def __handle_episodes(self, episodes, request: Request) -> Response:
+    def __handle_episodes(self, episodes: [Episode], request: Request) -> Response:
         total_episodes: int = len(episodes)
         response: Response = Response(total_episodes, 0, [])
         for i, episode in enumerate(episodes):
