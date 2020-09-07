@@ -2,6 +2,7 @@
 *.pyo
 *.mp3
 *.mkv
+*.mp4
 .idea/
 app/dist/
 app/build/
