@@ -1,19 +1,29 @@
 # rss2vid
 A GUI app for batch converting podcasts to videos for social media
+## installation
+### Portable Windows installation
+1. Download and unzip [package](https://github.com/armanraina/rss2vid/releases/download/v1.0.1-alpha/rss2vid-1.0.1.zip)
+2. Run rss2vidsimple.exe
+### From source code
+1. Install Python (at least 3.7) https://www.python.org/downloads/release/python-379/
+2. `python -m pip install --upgrade pip`
+3. Download the source, if you have git installed you can clone using:
+`git clone https://github.com/armanraina/rss2vid.git`
+4. `cd <INSTALL_DIR>/rss2vid'
+5. `pip install -r requirements.txt`
+6. `python main.py`
 ## usage
 
-1. Download and unzip [package](https://github.com/armanraina/rss2vid/releases/download/v1.0.1-alpha/rss2vid-1.0.1.zip)
-
-2. Get the RSS link of your podcast 
+1. Get the RSS link of your podcast 
 
 ![alt text](https://github.com/armanraina/rss2vid/blob/master/assets/Capture2.PNG "Step One")
 
-3. Set conversion options
+2. Set conversion options
 
 ![alt text](https://github.com/armanraina/rss2vid/blob/master/assets/Capture3.PNG "Step One")
 
 
-4. Process batch conversion
+3. Process batch conversion
 
 ![alt text](https://github.com/armanraina/rss2vid/blob/master/assets/Capture4.PNG "Step One")
 
