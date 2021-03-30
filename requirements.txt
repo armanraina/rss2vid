@@ -32,7 +32,7 @@ Pillow==7.1.2
 plyer==1.4.3
 pycares==3.1.1
 pycparser==2.20
-Pygments==2.6.1
+Pygments==2.7.4
 PyInstaller==3.6
 pyOpenSSL==19.1.0
 pypiwin32==223
