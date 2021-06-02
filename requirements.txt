@@ -46,7 +46,7 @@ six==1.15.0
 soupsieve==2.0.1
 tqdm==4.48.2
 tzlocal==2.0.0
-urllib3==1.25.8
+urllib3==1.26.5
 validators==0.15.0
 win-inet-pton==1.1.0
 wincertstore==0.2
